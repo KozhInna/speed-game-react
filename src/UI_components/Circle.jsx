@@ -1,5 +1,9 @@
 function Circle() {
-  return <div className="circle">circle</div>;
+  return (
+    <div className="circle">
+      <p>circle</p>
+    </div>
+  );
 }
 
 export default Circle;
