@@ -20,3 +20,9 @@ body {
   min-width: 320px;
   min-height: 100vh;
 }
+.circle {
+  background-color: white;
+  height: 7rem;
+  width: 7rem;
+  border-radius: 50%;
+}
