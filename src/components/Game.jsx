@@ -1,7 +1,7 @@
 import Circle from "../UI_components/Circle";
 import styles from "./Game.module.css";
 
-function Game({ score, circles, stopHandler, circleClickHandler }) {
+function Game({ score, circles, stopHandler, circleClickHandler, current }) {
   return (
     <>
       <div className={styles.layout}>
@@ -11,7 +11,12 @@ function Game({ score, circles, stopHandler, circleClickHandler }) {
           </div>
           <div className={styles.circles_box}>
             {circles.map((_, i) => (
-              <Circle key={i} id={i} circleClickHandler={circleClickHandler} />
+              <Circle
+                current={current === i}
+                key={i}
+                id={i}
+                circleClickHandler={circleClickHandler}
+              />
             ))}
           </div>
           <button onClick={stopHandler}>Stop game</button>

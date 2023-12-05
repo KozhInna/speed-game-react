@@ -1,11 +1,11 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import NewGame from "./components/NewGame";
 import { levels } from "./levels";
 
 import Game from "./components/Game";
 import GameOver from "./components/GameOver";
 const getRandomNum = (min, max) =>
-  Math.floor(Math.random() * (max - min + 1) + min);
+  Math.floor(Math.random() * (max - min) + min);
 
 function App() {
   const [player, setPlayer] = useState();
@@ -15,43 +15,66 @@ function App() {
   const [gameOver, setGameOver] = useState(false);
   const [gameLaunch, setGameLaunch] = useState(true);
   const [current, setCurrent] = useState(-1);
+  const timeoutIdRef = useRef(null);
+  const rounds = useRef(0);
+  const currentInst = useRef(0);
 
-  let timer;
   let pace = 1000;
+  let amountOfCircles;
 
   function gameSetHandler(level, name) {
-    const levelIndex = levels.findIndex((el) => el.name === level);
-    const amountOfCircles = levels[levelIndex].amount;
+    // const levelIndex = levels.findIndex((el) => el.name === level);
+    // const amountOfCircles = levels[levelIndex].amount;
 
-    const circlesArray = Array.from({ length: amountOfCircles }, (x, i) => i);
+    const { amount } = levels.find((el) => el.name === level);
+    amountOfCircles = amount;
+
+    const circlesArray = Array.from({ length: amount }, (_, i) => i);
 
     setCircles(circlesArray);
     setPlayer({ level: level, name: name });
-    setGameLaunch(!gameLaunch);
-    setGameStart(!gameStart);
+    setGameLaunch(false);
+    setGameStart(true);
     randomNumb();
   }
 
   const stopHandler = () => {
-    setGameStart(!gameStart);
-    setGameOver(!gameOver);
-    clearTimeout(timer);
+    setGameStart(false);
+    setGameOver(true);
+    clearTimeout(timeoutIdRef.current);
+    timeoutIdRef.current = null;
   };
   function closeHandler() {
-    setGameLaunch(!gameLaunch);
-    setGameOver(!gameOver);
+    setGameLaunch(true);
+    setGameOver(false);
   }
   function circleClickHandler(id) {
-    setScore(score + 10);
+    console.log("id", id);
+    if (current !== id) {
+      stopHandler();
+      return;
+    } else {
+      rounds.current--;
+      setScore(score + 10);
+    }
   }
+
   function randomNumb() {
+    if (rounds.current >= 3) {
+      stopHandler();
+      return;
+    }
     let nextActive;
     do {
-      nextActive = getRandomNum(0, circles.length);
-    } while (nextActive === current);
+      nextActive = getRandomNum(0, amountOfCircles);
+    } while (nextActive === currentInst.current);
     setCurrent(nextActive);
-    timer = setTimeout(randomNumb, pace);
+
+    rounds.current++;
+    currentInst.current = nextActive;
+    timeoutIdRef.current = setTimeout(randomNumb, pace);
     console.log(nextActive);
+    pace *= 0.95;
   }
   return (
     <>
@@ -59,6 +82,7 @@ function App() {
 
       {gameStart && (
         <Game
+          current={current}
           score={score}
           circles={circles}
           stopHandler={stopHandler}

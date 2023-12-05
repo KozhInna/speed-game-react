@@ -11,3 +11,12 @@ body {
   margin: 0;
   box-sizing: border-box;
 }
+circle.active {
+  background-color: white;
+  height: 7rem;
+  width: 7rem;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
