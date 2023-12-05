@@ -1,7 +1,9 @@
-function Circle() {
+import styles from "./Circle.module.css";
+
+function Circle({ circleClickHandler, id }) {
   return (
-    <div className="circle">
-      <p>circle</p>
+    <div className={styles.circle} onClick={() => circleClickHandler(id)}>
+      <p>{id + 1}</p>
     </div>
   );
 }

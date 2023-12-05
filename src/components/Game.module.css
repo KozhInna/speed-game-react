@@ -1,0 +1,25 @@
+.layout {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  justify-content: center;
+  align-items: center;
+}
+.game_box {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+}
+.game_box button {
+  padding: 10px 20px;
+  font-family: inherit;
+  border: none;
+  border-radius: 5px;
+}
+.circles_box {
+  display: flex;
+  gap: 2rem;
+}
