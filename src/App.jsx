@@ -4,6 +4,7 @@ import { levels } from "./levels";
 
 import Game from "./components/Game";
 import GameOver from "./components/GameOver";
+
 const getRandomNum = (min, max) =>
   Math.floor(Math.random() * (max - min) + min);
 
@@ -23,9 +24,6 @@ function App() {
   let amountOfCircles;
 
   function gameSetHandler(level, name) {
-    // const levelIndex = levels.findIndex((el) => el.name === level);
-    // const amountOfCircles = levels[levelIndex].amount;
-
     const { amount } = levels.find((el) => el.name === level);
     amountOfCircles = amount;
 

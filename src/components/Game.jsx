@@ -7,7 +7,7 @@ function Game({ score, circles, stopHandler, circleClickHandler, current }) {
       <div className={styles.layout}>
         <div className={styles.game_box}>
           <div>
-            <p>{score}</p>
+            <p>Your score: {score}</p>
           </div>
           <div className={styles.circles_box}>
             {circles.map((_, i) => (
