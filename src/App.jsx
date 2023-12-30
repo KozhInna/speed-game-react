@@ -1,9 +1,11 @@
 import { useState, useRef } from "react";
 import NewGame from "./components/NewGame";
 import { levels } from "./levels";
-
 import Game from "./components/Game";
 import GameOver from "./components/GameOver";
+
+import slapSound from "../src/assets/sounds/slap.wav";
+import endSound from "../src/assets/sounds/negative_beeps.mp3";
 
 const getRandomNum = (min, max) =>
   Math.floor(Math.random() * (max - min) + min);
@@ -12,19 +14,14 @@ function App() {
   const [player, setPlayer] = useState();
   const [circles, setCircles] = useState([]);
   const [score, setScore] = useState(0);
-  const [gameOn, setGameOn] = useState(false); //false
+  const [gameOn, setGameOn] = useState(false);
   const [gameOver, setGameOver] = useState(false);
-  const [gameLaunch, setGameLaunch] = useState(true); //true
-  const [current, setCurrent] = useState(); //-1
-  /*  const healtharr = [1, 2, 3];
-  const [health, setHealth] = useState(healtharr); */
+  const [gameLaunch, setGameLaunch] = useState(true);
+  const [current, setCurrent] = useState();
 
   const timeoutIdRef = useRef(null);
   const rounds = useRef(0);
   const currentInst = useRef(0);
-
-  /* console.log("health", health); */
-  console.log("current", current);
 
   let pace = 1000;
   let amountOfCircles;
@@ -37,12 +34,10 @@ function App() {
 
     setCircles(circlesArray);
     setPlayer({ level: level, name: name });
-    /* setGameLaunch(false); */
     setGameLaunch((prevLaunch) => !prevLaunch);
     gameStart();
   }
   function gameStart() {
-    /*  setGameStart(true); */
     setGameOn(!gameOn);
     randomNumb();
   }
@@ -54,34 +49,24 @@ function App() {
     timeoutIdRef.current = null;
     rounds.current = null;
     pace = 1000;
+    playEndGame();
   };
   function closeHandler() {
     setGameOver(!gameOver);
     setGameLaunch(!gameLaunch);
     setScore(0);
-    // setGameLaunch(true);
-    // setGameOver(false);
   }
-
-  /*  function healthhandler() {
-    const newHealth = healtharr.slice(-health.lenght + 1);
-    setHealth(newHealth);
-  } */
 
   function circleClickHandler(id) {
     console.log("current_id", id);
     console.log("id", id);
     if (current !== id) {
-      /* if (health.length > 1) {
-        healthhandler();
-      } else { */
       stopHandler();
       return;
-      /*   } */
     }
     rounds.current--;
-    // setScore(score + 10);
     setScore((prevScore) => prevScore + 10);
+    playSlap();
   }
 
   function randomNumb() {
@@ -93,16 +78,19 @@ function App() {
     do {
       nextActive = getRandomNum(0, amountOfCircles);
     } while (nextActive === currentInst.current);
-
     setCurrent(nextActive);
     rounds.current++;
     currentInst.current = nextActive;
     timeoutIdRef.current = setTimeout(randomNumb, pace);
     pace *= 0.95;
-
-    console.log("nextActive", nextActive);
   }
 
+  function playSlap() {
+    new Audio(slapSound).play();
+  }
+  function playEndGame() {
+    new Audio(endSound).play();
+  }
   return (
     <>
       <h1>Catch mosquitos</h1>
@@ -115,7 +103,6 @@ function App() {
           circles={circles}
           stopHandler={stopHandler}
           circleClickHandler={circleClickHandler}
-          /* health={health} */
         />
       )}
       {gameOver && (
