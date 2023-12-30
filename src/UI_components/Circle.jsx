@@ -1,9 +1,8 @@
-import styles from "./Circle.module.css";
-
 function Circle({ circleClickHandler, current, id }) {
   return (
     <div
-      className={current ? styles.circle : null}
+      /* className={styles.circle} */
+      className={`circle ${current ? "active" : ""}`}
       onClick={() => circleClickHandler(id)}
     ></div>
   );

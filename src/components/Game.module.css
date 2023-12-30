@@ -2,7 +2,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 100vh;
+  height: calc(100vh - 100px);
   width: 100vw;
 }
 .game_box {
@@ -19,8 +19,30 @@
   font-family: inherit;
   border: none;
   border-radius: 5px;
+  font-size: 1.2rem;
+  box-shadow: 5px 9.9px 9.9px hsla(0, 3%, 47%, 0.35);
+  color: black;
+  font-weight: 700;
 }
 .circles_box {
   display: flex;
   gap: 7rem;
+}
+.health_box {
+  display: flex;
+  gap: 1rem;
+  background-color: white;
+  padding: 5px;
+  box-shadow: 5px 9.9px 9.9px hsla(0, 3%, 47%, 0.35);
+  border-radius: 5px;
+}
+h2 {
+  font-weight: 800;
+  text-align: center;
+}
+.healthScore_box {
+  display: flex;
+  justify-content: space-around;
+  gap: 20px;
+  width: 100%;
 }

@@ -9,7 +9,6 @@ function NewGame({ onclick }) {
   return (
     <div className={styles.container}>
       <div className={styles.interface}>
-        <h1>Catch mosquitos</h1>
         <h2>Enter your name</h2>
         <input type="text" onChange={inputHandler} />
         <h2>Set a level of difficulty to start a game</h2>
