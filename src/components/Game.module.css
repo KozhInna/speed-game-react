@@ -26,15 +26,7 @@
 }
 .circles_box {
   display: flex;
-  gap: 7rem;
-}
-.health_box {
-  display: flex;
-  gap: 1rem;
-  background-color: white;
-  padding: 5px;
-  box-shadow: 5px 9.9px 9.9px hsla(0, 3%, 47%, 0.35);
-  border-radius: 5px;
+  gap: 6rem;
 }
 h2 {
   font-weight: 800;
@@ -45,4 +37,12 @@ h2 {
   justify-content: space-around;
   gap: 20px;
   width: 100%;
+}
+
+@media (max-width: 1400px) {
+  .circles_box {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+  }
 }

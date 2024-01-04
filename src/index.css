@@ -43,3 +43,13 @@ h1 {
   font-size: 4rem;
   text-align: center;
 }
+@media (max-width: 850px) {
+  h1 {
+    font-size: 3.5rem;
+  }
+}
+@media (max-width: 650px) {
+  h1 {
+    font-size: 3rem;
+  }
+}

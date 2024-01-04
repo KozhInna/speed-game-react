@@ -51,3 +51,13 @@
 .name {
   text-transform: uppercase;
 }
+@media (max-width: 1200px) {
+  .gameOverBox {
+    width: 45%;
+  }
+}
+@media (max-width: 700px) {
+  .gameOverBox {
+    width: 70%;
+  }
+}
