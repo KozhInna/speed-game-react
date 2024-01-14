@@ -1,8 +1,18 @@
-# React + Vite
+# Speed game
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## General Information
 
-Currently, two official plugins are available:
+Speed game project for React course at Business College Helsinki in December 2023.
+It's called Hit mosquitos, a player has to be fast and hit the circle where a mosquito appears, progressively speed increases. On the intro page there are options of 3 levels of difficulty.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Technologies Used
+
+React, HTML, CSS
+
+## Screenshots
+
+![Example screenshot](./dist/assets/Screenshot.png)
+
+### **Check it out!**
+
+[Speedgame](https://sparkly-macaron-ce4676.netlify.app)
