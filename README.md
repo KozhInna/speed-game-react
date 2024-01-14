@@ -11,7 +11,7 @@ React, HTML, CSS
 
 ## Screenshots
 
-![Example screenshot](./dist/assets/Screenshot.png)
+![Example screenshot](./public/Screenshot.png)
 
 ### **Check it out!**
 
